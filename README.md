@@ -25,12 +25,9 @@ We hope to help everyone who cooks pick out their food more easily and deliberat
 - The Meal DB
 
 
-## Features
-List the ready features here:
-- Intuitive recipe searching
-- Save your favorite recipes
+# Features
 
-### Pantry Tracking: 
+### Pantry Tracking
 This feature allows users to add and remove ingredients from their personal pantry so they can easily track their available ingredients. 
 
 ***Corresponding Stories***
@@ -41,6 +38,7 @@ This feature allows users to add and remove ingredients from their personal pant
 
 - As a general user, I want to delete ingredients from my pantry so that I can keep my pantry up to date as I use or get rid of food items.
 
+
 ### Recipe Suggestion
 This feature allows the app to suggest recipes to the user for them to cook. It uses the user's pantry to filter recipes based on ingredients the user has on hand. 
 
@@ -49,6 +47,25 @@ This feature allows the app to suggest recipes to the user for them to cook. It 
 - As a general user, I want the app to recommend recipes for me to cook so I can try out new recipes when cooking.
 
 - As a general user, I want the recipes recommended to me to be filtered to fit the ingredients I have in my pantry. 
+
+### Recipe Saving
+Users can save existing recipes from the app’s suggestion list or search results for quick access later.
+
+***Corresponding Stories***
+- As a general user, I want to save a recipe from the suggestions so that I can easily find it again.
+
+- As a general user, I want to view my saved recipe list so that I can quickly pick from my personal favorites.
+
+- As a general user, I want to remove a saved recipe so that I can keep my list relevant.
+
+### Recipe Creating
+This feature gives the user the ability to list the required ingredients necessary for their own recipes to be suggested later.
+
+***Corresponding Stories***
+
+- As a general user, I want to create a custom recipe and list its required ingredients so that the app can recommend it when my pantry matches.
+
+- As a general user, I want to add personal notes or tweaks to a saved recipe so that I can remember improvements.
 
 
 ## Project Status
