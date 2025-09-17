@@ -49,9 +49,10 @@ This feature allows the app to suggest recipes to the user for them to cook. It 
 - As a general user, I want the recipes recommended to me to be filtered to fit the ingredients I have in my pantry. 
 
 ### Recipe Saving
-Users can save existing recipes from the appâ€™s suggestion list or search results for quick access later.
+Users can save existing recipes from the app’s suggestion list or search results for quick access later.
 
 ***Corresponding Stories***
+
 - As a general user, I want to save a recipe from the suggestions so that I can easily find it again.
 
 - As a general user, I want to view my saved recipe list so that I can quickly pick from my personal favorites.
