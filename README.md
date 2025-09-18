@@ -1,7 +1,7 @@
 # TasteBase
 > *The go-to place to pick out your meals. Just pick an ingredient (or more) and let us find you recipes!*
 
-Aaron Espinoza, Heston Montagne, Dylan Priebe, Jeremiah Stone, and Russel Sulivan are working together to create a web-app that connects users who want to improve their cooking skills to recipes that are relevant to their tastes and available ingredients. The goal of the app is to make cooking feel easier for aspiring cooks who find the process daunting by simplifying the research step.
+Aaron Espinoza, Heston Montagne, Dylan Priebe, Jeremiah Stone, and Russell Sullivan are working together to create a web-app that connects users who want to improve their cooking skills to recipes that are relevant to their tastes and available ingredients. The goal of the app is to make cooking feel easier for aspiring cooks who find the process daunting by simplifying the research step.
 
 ## Table of Contents
 * [General Info](#general-information)
@@ -49,7 +49,7 @@ This feature allows the app to suggest recipes to the user for them to cook. It 
 - As a general user, I want the recipes recommended to me to be filtered to fit the ingredients I have in my pantry. 
 
 ### Recipe Saving
-Users can save existing recipes from the app’s suggestion list or search results for quick access later.
+Users can save existing recipes from the app's suggestion list or search results for quick access later.
 
 ***Corresponding Stories***
 
@@ -83,6 +83,9 @@ Room for improvement:
 To do:
 - Feature to be added 1
 - Feature to be added 2 -->
+
+- Recommend recipes based on different cultures. For example, when the user asks for Indian or Greek recipes.
+- Recommend recipes based on food nutrients. For example, when the user asks for high-protein, high carbohydrate, zero-carbohydrate(keto), low-fat, low sugar, high sugar, etc.
 
 
 <!-- ## Acknowledgements
