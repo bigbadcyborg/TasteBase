@@ -86,6 +86,7 @@ To do:
 
 - Recommend recipes based on different cultures. For example, when the user asks for Indian or Greek recipes.
 - Recommend recipes based on food nutrients. For example, when the user asks for high-protein, high carbohydrate, zero-carbohydrate(keto), low-fat, low sugar, high sugar, etc.
+- When the user has nothing in their pantry, ask them what kind of food they might want and give recommendations based off this initial user input
 
 
 <!-- ## Acknowledgements
