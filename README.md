@@ -20,6 +20,8 @@ We hope to help everyone who cooks pick out their food more easily and deliberat
 
 ## Technologies Used
 - React Native
+- Expo
+- Expo Go
 - Java
 - SQL
 - The Meal DB
