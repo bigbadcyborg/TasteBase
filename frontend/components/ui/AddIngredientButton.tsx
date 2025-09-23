@@ -28,9 +28,8 @@ const styles = StyleSheet.create({
   addButton: {
     position: 'absolute',
     left: 16,
-    paddingHorizontal: 32,
-    paddingVertical: 32,
+    paddingHorizontal: 8,
+    paddingVertical: 64,
     borderRadius: 16,
   },
-  addButtonText: { fontSize: 16, fontWeight: '600' },
 });
