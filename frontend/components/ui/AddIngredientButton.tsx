@@ -12,7 +12,7 @@ type Props = {
   onPress: () => void;
 };
 
-export function AddIngredientBUtton({ onPress }: Props) {
+export function AddIngredientButton({ onPress }: Props) {
   return (
     <TouchableOpacity
       style={[styles.addButton]}
