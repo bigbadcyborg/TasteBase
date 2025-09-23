@@ -1,7 +1,7 @@
 import { PropsWithChildren, useState } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
-
+import { useThemeColor } from '@/hooks/use-theme-color';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
@@ -13,13 +13,14 @@ type Props = {
 };
 
 export function AddIngredientButton({ onPress }: Props) {
+  const iconColor = useThemeColor({}, 'text');
   return (
     <TouchableOpacity
       style={[styles.addButton]}
       onPress={onPress}
       activeOpacity={0.8}
     >
-      <AntDesign name="plus" size={32} color="white" />
+      <AntDesign name="plus" size={32} color={iconColor} />
     </TouchableOpacity>
   );
 }
@@ -27,9 +28,12 @@ export function AddIngredientButton({ onPress }: Props) {
 const styles = StyleSheet.create({
   addButton: {
     position: 'absolute',
+    top: 16,
     left: 16,
-    paddingHorizontal: 8,
-    paddingVertical: 64,
-    borderRadius: 16,
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
