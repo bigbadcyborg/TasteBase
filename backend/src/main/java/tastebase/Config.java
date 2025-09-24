@@ -1,15 +1,21 @@
 package tastebase;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class Config {
     private static Properties prop = new Properties();
 
     static {
-        try {
-            prop.load(new FileInputStream("app.properties"));
-        } catch (Exception e) {
+        try (InputStream input = Config.class.getClassLoader().getResourceAsStream("app.properties")) {
+            if (input == null) {
+                throw new FileNotFoundException("app.properties not found in classpath");
+            }
+            prop.load(input);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
