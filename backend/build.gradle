@@ -1,6 +1,7 @@
 plugins {
-    id 'groovy'
     id 'application'
+    id 'org.springframework.boot' version '2.5.4'
+    id 'io.spring.dependency-management' version '1.1.6'
 }
 apply plugin : "java"
 
@@ -14,7 +15,9 @@ repositories {
 dependencies {
     implementation 'org.apache.groovy:groovy:5.0.0'
     implementation 'org.mariadb.jdbc:mariadb-java-client:3.5.0'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
 
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
