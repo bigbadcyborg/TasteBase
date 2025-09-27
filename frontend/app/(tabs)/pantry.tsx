@@ -5,6 +5,7 @@ import { ThemedView as ThemedView } from '@/components/themed-view';
 import { ThemedText } from '@/components/themed-text';
 import { AddIngredientButton } from '@/components/ui/AddIngredientButton';
 import { AddIngredientModal } from '@/components/ui/AddIngredientModal';
+import IngredientList from '@/components/ui/IngredientList';
 
 export default function TabPantryScreen() {
   const [showAdd, setShowAdd] = useState(false);
@@ -19,6 +20,7 @@ export default function TabPantryScreen() {
         />
         <ThemedText type="title" style={styles.header}>Pantry</ThemedText>
         <ThemedText style={styles.subtitle}>All your ingredients, at a glance.</ThemedText>
+        <IngredientList/>
     </ThemedView>
   );
 }
