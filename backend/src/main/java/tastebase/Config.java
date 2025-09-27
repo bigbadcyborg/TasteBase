@@ -10,9 +10,9 @@ public class Config {
     private static Properties prop = new Properties();
 
     static {
-        try (InputStream input = Config.class.getClassLoader().getResourceAsStream("app.properties")) {
+        try (InputStream input = Config.class.getClassLoader().getResourceAsStream("application.properties")) {
             if (input == null) {
-                throw new FileNotFoundException("app.properties not found in classpath");
+                throw new FileNotFoundException("application.properties not found in classpath");
             }
             prop.load(input);
         } catch (IOException e) {
