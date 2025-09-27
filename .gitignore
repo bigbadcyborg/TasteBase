@@ -48,3 +48,12 @@ Thumbs.db
 *.mov
 *.wmv
 
+# Env
+.env
+*.properties
+
+# Gradle
+/backend/gradlew
+/backend/gradlew.bat
+/backend/build/
+/backend/.gradle/
