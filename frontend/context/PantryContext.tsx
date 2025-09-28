@@ -7,6 +7,7 @@ type ContextShape = {
   loading: boolean;
   error?: string;
   refresh: () => Promise<void>;
+  addItem: (name: string) => Promise<void>;
 };
 
 const PantryContext = createContext<ContextShape | undefined>(undefined);
@@ -29,12 +30,18 @@ export const PantryProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     }
   };
 
+  const addItem = async (name: string) => {
+    if(!name.trim()) return;
+    const created = await pantryService.addItem(name.trim());
+    setItems((prev) => [...prev, created]);
+  };
+
   useEffect(() => {
     load();
   }, []);
 
   return (
-    <PantryContext.Provider value={{ items, loading, error, refresh: load }}>
+    <PantryContext.Provider value={{ items, loading, error, refresh: load, addItem }}>
       {children}
     </PantryContext.Provider>
   );
