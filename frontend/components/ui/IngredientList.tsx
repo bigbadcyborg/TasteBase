@@ -22,12 +22,18 @@ export default function IngredientList() {
         <ThemedText type="subtitle" style={[{ fontStyle: 'italic' }]}>Item</ThemedText>
         <ThemedText type="default" style={[{ fontStyle: 'italic' }]}>Amount</ThemedText>
       </ThemedView>
-      {items.map((item) => (
+      {items.length != 0 && items.map((item) => (
         <ThemedView key={item.itemID} style={[styles.row, { borderColor: Colors[colorScheme].tint }]}>
           <ThemedText type="subtitle">{item.itemName}</ThemedText>
           <ThemedText type="default">{item.amount.amount} {item.amount.unit}</ThemedText>
         </ThemedView>
       ))}
+      {items.length == 0 && (
+        <ThemedView style={styles.message}>
+          <ThemedText type="defaultSemiBold">
+            Your pantry is empty. Select the + button to add ingredients. </ThemedText>
+        </ThemedView>
+      )}
     </ThemedView>
   );
 }
@@ -53,5 +59,12 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     borderBottomWidth: 1,
     borderStyle: 'dashed',
-  }
+  },
+  message: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    textAlign: 'center',
+    paddingHorizontal: 12,
+    paddingVertical: 32,
+  },
 });
