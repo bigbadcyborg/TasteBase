@@ -7,7 +7,6 @@ import tastebase.database.SQLConnector;
 
 import java.net.http.*;
 import java.net.URI;
-import io.github.cdimascio.dotenv.Dotenv;
 
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -30,8 +29,7 @@ public class App {
         SpringApplication.run(App.class, args);
 
         //API testing call
-        Dotenv dotenv = Dotenv.load();
-        String apiKey = dotenv.get("SPN_KEY");
+        String apiKey = Config.get("SPN_KEY");
         String url = "https://api.spoonacular.com/recipes/random?apiKey=" + apiKey;
 
         HttpClient client = HttpClient.newHttpClient();
