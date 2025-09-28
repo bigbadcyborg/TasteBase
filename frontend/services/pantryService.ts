@@ -10,11 +10,26 @@ const pantry: Pantry = {
   ],
 };
 
+
+
 export const pantryService = {
   async listItems(): Promise<Item[]> {
     await new Promise((r) => setTimeout(r, 150));
     return pantry.pantryItems.map((i) => ({ ...i, amount: { ...i.amount } }));
   },
+  async addItem(name: string): Promise<Item> {
+    await new Promise((r) => setTimeout(r, 150));
+    const newItem: Item = {
+      itemID: nextId++,
+      itemName: name,
+      amount: { amount: 0, unit: 'unit' },
+    };
+    pantry.pantryItems.push(newItem);
+    return { ...newItem, amount: { ...newItem.amount } };
+  },
 };
+
+
+
 
 export default pantryService;
