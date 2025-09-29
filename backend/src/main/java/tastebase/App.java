@@ -32,7 +32,7 @@ public class App {
 
         System.out.println("Starting Spring API");
         SpringApplication.run(App.class, args);
-        
+
         SpoonacularService spoonacularService = new SpoonacularService();
     }
 
