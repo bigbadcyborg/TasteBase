@@ -28,6 +28,9 @@ public class User {
     public void addFavorite(Recipe favorite) {
         this.favorites.add(favorite);
     }
+    public boolean removeFavorite(Recipe favorite) {
+        return this.favorites.remove(favorite);
+    }
 
     public HashSet<Recipe> getFavorites() {
         return favorites;
