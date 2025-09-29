@@ -1,11 +1,12 @@
 package tastebase.users;
 
+import tastebase.obj.Recipe;
 import java.util.HashSet;
 
 public class User {
 
     String name;
-    HashSet<String> favorites;
+    HashSet<Recipe> favorites;
 
     public User(String name) {
         this.name = name;
@@ -20,11 +21,11 @@ public class User {
         this.name = name;
     }
 
-    public void addFavorite(String favorite) {
+    public void addFavorite(Recipe favorite) {
         this.favorites.add(favorite);
     }
 
-    public HashSet<String> getFavorites() {
+    public HashSet<Recipe> getFavorites() {
         return favorites;
     }
 }
