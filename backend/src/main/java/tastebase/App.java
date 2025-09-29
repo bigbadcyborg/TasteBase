@@ -32,13 +32,8 @@ public class App {
 
         System.out.println("Starting Spring API");
         SpringApplication.run(App.class, args);
-
+        
         SpoonacularService spoonacularService = new SpoonacularService();
-
-        //API testing call
-        System.out.println("Testing Spoonacular API call...");
-        Recipe randomRecipe = new Recipe(spoonacularService.getRandomRecipe());
-        System.out.println("Random Recipe Title: " + randomRecipe.getTitle());
     }
 
     public static SpoonacularService getSpoonacularService() {
