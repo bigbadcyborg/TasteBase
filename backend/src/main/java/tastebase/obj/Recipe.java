@@ -27,6 +27,11 @@ public final class Recipe {
         this.fullRecipe = recipe;
     }
 
+    @Override
+    public String toString() {
+        return fullRecipe.toString();
+    }
+
     public int getId() {
         return id;
     }
