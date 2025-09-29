@@ -4,17 +4,21 @@ import tastebase.obj.Recipe;
 import java.util.HashSet;
 
 public class User {
-
+    int userId;
     String name;
     HashSet<Recipe> favorites;
 
-    public User(String name) {
+    public User(int userId, String name, HashSet<Recipe> favorites) {
+        this.userId = userId;
         this.name = name;
-        this.favorites = new HashSet<>();
+        this.favorites = favorites;
     }
 
     public String getName() {
         return name;
+    }
+    public int getUserId() {
+        return userId;
     }
 
     public void setName(String name) {
