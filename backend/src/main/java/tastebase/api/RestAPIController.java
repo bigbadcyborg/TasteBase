@@ -1,5 +1,6 @@
 package tastebase.api;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 import org.springframework.web.bind.annotation.*;
 import tastebase.App;
@@ -28,7 +29,11 @@ public class RestAPIController {
         if (ingredients == null || ingredients.isEmpty()) {
             return "No ingredients provided, provide as comma-separated list. E.g., ?ingredients=apples,flour,sugar";
         } else {
-            return "Need to be added";
+            JsonArray results = new JsonArray();
+            for (var recipe : App.getSpoonacularService().getRecipes(ingredients)) {
+                results.add(recipe);
+            }
+            return results.toString();
         }
     }
 
