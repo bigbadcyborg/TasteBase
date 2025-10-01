@@ -8,6 +8,17 @@ import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 
+type ParseResult = { added: number; skipped: string[] };
+
+export async function parseAndAddItems(raw: string, addItem: (name:string) => Promise<void>): Promise<ParseResult>{
+  const skipped: string[] = [];
+  let added = 0;
+
+  //parse by commas and spaces, call addItem with each of them
+
+  return {added, skipped};
+}
+
 type Props = {
   visible: boolean;
   onClose: () => void;
