@@ -1,8 +1,9 @@
 import { ThemedView } from "./themed-view";
 import { ThemedText } from "./themed-text";
 import Recipe from "./recipe";
+import { Colors } from "../constants/theme";
 import { useState, useEffect } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, useColorScheme } from "react-native";
 
 type Props = {
   recipes?: object[] | null;
@@ -10,6 +11,7 @@ type Props = {
 
 export default function RecipeList({ recipes }: Props) {
   const [recipeList, setRecipeList] = useState<object[]>([]);
+  const colorScheme = useColorScheme() || 'light';
 
   useEffect(() => {
     // Normalize recipes to an array (handle null/undefined)
@@ -21,16 +23,10 @@ export default function RecipeList({ recipes }: Props) {
   }, [recipes]);
 
   return (
-    <ThemedView style={styles.container}>
-      {recipeList.length > 0 ? (
-        recipeList.map((recipe, index) => (
-          <Recipe key={index} {...recipe} />
-        ))  
-      ) : (
-        <ThemedText type="defaultSemiBold" style={{ padding: 20 }}>
-          No recipes available.
-        </ThemedText>
-      )}
+    <ThemedView style={[styles.container, { borderColor: Colors[colorScheme].tint }]}>
+      {recipeList.map((recipe, index) => (
+        <Recipe key={index} {...recipe} />
+      ))}  
     </ThemedView>
   );
 }
@@ -38,7 +34,10 @@ export default function RecipeList({ recipes }: Props) {
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 20,
+    marginVertical: 10,
     borderRadius: 8,
     borderWidth: 5,
+    minHeight: 50,
+    minWidth: 200,
   },
 });
