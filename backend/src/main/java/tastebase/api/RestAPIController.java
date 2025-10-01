@@ -4,6 +4,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 import org.springframework.web.bind.annotation.*;
 import tastebase.App;
+import tastebase.database.SQLConnector;
+import tastebase.obj.Recipe;
 
 @RestController
 @RequestMapping("/api")
@@ -21,7 +23,9 @@ public class RestAPIController {
 
     @GetMapping("/recipes/random")
     public String getRandomRecipe() {
-        return App.getSpoonacularService().getRandomRecipe().toString();
+        Recipe recipe = App.getSpoonacularService().getRandomRecipe();
+        SQLConnector.saveRecipe(recipe);
+        return recipe.toString();
     }
 
     @GetMapping("/recipes/search")
@@ -39,7 +43,18 @@ public class RestAPIController {
 
     @GetMapping("/recipes/{id}")
     public String getRecipeById(@PathVariable int id) {
-        return App.getSpoonacularService().getRecipe(id).toString();
+        if (SQLConnector.hasRecipe(id)) {
+            Recipe recipe = SQLConnector.getRecipe(id);
+            if (recipe != null) {
+                return recipe.toString();
+            }
+        }
+        Recipe recipe = App.getSpoonacularService().getRecipe(id);
+        if (recipe != null) {
+            SQLConnector.saveRecipe(recipe);
+            return recipe.toString();
+        }
+        return "Recipe not found.";
     }
 
 }
