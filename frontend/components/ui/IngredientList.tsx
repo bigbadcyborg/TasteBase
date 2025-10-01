@@ -1,8 +1,9 @@
 import { ThemedView } from "../themed-view";
 import { ThemedText } from "../themed-text";
-import { StyleSheet, ActivityIndicator, useColorScheme } from "react-native";
+import { StyleSheet, ActivityIndicator, useColorScheme, TextInput, TouchableOpacity } from "react-native";
 import { usePantry } from '../../context/PantryContext';
 import { Colors } from "../../constants/theme";
+import RemoveIngredientButton from "./RemoveIngredientButton";
 
 export default function IngredientList() {
   const { items, loading, error } = usePantry(); // Pantry object from PantryContext
@@ -25,8 +26,14 @@ export default function IngredientList() {
       {items.length != 0 && items.map((item) => (
         <ThemedView key={item.itemID} style={[styles.row, { borderColor: Colors[colorScheme].tint }]}>
           <ThemedText type="subtitle">{item.itemName}</ThemedText>
-          <ThemedText type="default">{item.amount.amount} {item.amount.unit}</ThemedText>
+          
+          <RemoveIngredientButton
+            itemID={item.itemID}
+            currentAmount={item.amount.amount}
+            unit={item.amount.unit}
+          />
         </ThemedView>
+
       ))}
       {items.length == 0 && (
         <ThemedView style={styles.message}>
