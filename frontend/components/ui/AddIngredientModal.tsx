@@ -8,10 +8,46 @@ import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 
+type ParseResult = { added: number; skipped: string[] };
+
+export async function parseAndAddItems(raw: string, addItem: (amt: number, unit: string, name:string) => Promise<void>): Promise<ParseResult>{
+  const skipped: string[] = [];
+  let added = 0;
+
+  const entries = raw.split(",").map(s=> s.trim()).filter(Boolean);
+
+  for(const entry of entries){
+    const parts = entry.split(/\s+/).filter(Boolean);
+
+    if (parts.length < 2) { skipped.push(entry); continue; }
+
+    const amt = Number(parts[0]);
+    if (!Number.isFinite(amt)) { skipped.push(entry); continue; }
+
+    let unit: string;
+    let name: string;
+
+    if (parts.length === 2) {
+      unit = parts[1];
+      name = parts[1];
+    } else {
+      unit = parts[1];
+      name = parts.slice(2).join(' ');
+    }
+
+    if (!name) { skipped.push(entry); continue; }
+
+    await addItem(amt, unit, name);
+    added++;
+  }
+
+  return { added, skipped };
+}
+
 type Props = {
   visible: boolean;
   onClose: () => void;
-  onAdd: (ingredient: string) => void;
+  onAdd: (raw: string) => Promise<ParseResult>;
 };
 
 export function AddIngredientModal({ visible, onClose, onAdd }: Props) {
@@ -24,7 +60,7 @@ export function AddIngredientModal({ visible, onClose, onAdd }: Props) {
     <Modal visible={visible} animationType="slide" transparent>
       <View style={styles.overlay}>
         <View style={[styles.card, { backgroundColor: bg }]}>
-          
+
           <ThemedText type="title" style={styles.title}>
             Add Ingredient
           </ThemedText>

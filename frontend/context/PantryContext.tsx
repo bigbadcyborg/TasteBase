@@ -7,7 +7,7 @@ type ContextShape = {
   loading: boolean;
   error?: string;
   refresh: () => Promise<void>;
-  addItem: (name: string) => Promise<void>;
+  addItem: (amt: number, unit: string, name: string) => Promise<void>;
 };
 
 const PantryContext = createContext<ContextShape | undefined>(undefined);
@@ -30,10 +30,22 @@ export const PantryProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     }
   };
 
-  const addItem = async (name: string) => {
-    if(!name.trim()) return;
-    const created = await pantryService.addItem(name.trim());
-    setItems((prev) => [...prev, created]);
+  const addItem = async (amt: number, unit: string, name: string) => {
+    const norm = (s: string) => s.trim().toLowerCase().replace(/\s+/g, ' ');
+    const updated = await pantryService.addItem(amt, unit, name);
+    setItems(prev => {
+      const idx = prev.findIndex(
+        i => i.itemID === updated.itemID ||
+          (norm(i.itemName) === norm(updated.itemName) &&
+            norm(i.amount.unit) === norm(updated.amount.unit))
+      );
+      if (idx !== -1) {
+        const copy = [...prev];
+        copy[idx] = updated;
+        return copy;
+      }
+      return [...prev, updated];
+    });
   };
 
   useEffect(() => {
