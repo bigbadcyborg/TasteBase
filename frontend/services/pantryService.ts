@@ -17,12 +17,12 @@ export const pantryService = {
     await new Promise((r) => setTimeout(r, 150));
     return pantry.pantryItems.map((i) => ({ ...i, amount: { ...i.amount } }));
   },
-  async addItem(name: string): Promise<Item> {
+  async addItem(amt: number, unit: string, name: string): Promise<Item> {
     await new Promise((r) => setTimeout(r, 150));
     const newItem: Item = {
       itemID: nextId++,
       itemName: name,
-      amount: { amount: 0, unit: 'unit' },
+      amount: { amount: amt, unit: unit },
     };
     pantry.pantryItems.push(newItem);
     return { ...newItem, amount: { ...newItem.amount } };

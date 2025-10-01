@@ -10,11 +10,30 @@ import { useColorScheme } from '@/hooks/use-color-scheme';
 
 type ParseResult = { added: number; skipped: string[] };
 
-export async function parseAndAddItems(raw: string, addItem: (name:string) => Promise<void>): Promise<ParseResult>{
+export async function parseAndAddItems(raw: string, addItem: (amt: number, unit: string, name:string) => Promise<void>): Promise<ParseResult>{
   const skipped: string[] = [];
   let added = 0;
 
-  //parse by commas and spaces, call addItem with each of them
+  const entries = raw.split(",").map(s=> s.trim()).filter(Boolean);
+
+  for(const entry of entries){
+    const parts = entry.split(/\s+/);
+    if(parts.length < 3){
+      skipped.push(entry);
+      continue;
+    }
+
+    const[amt,unit, ...rest] = parts;
+    const item = rest.join(' ').trim();
+
+    if(!item){
+      skipped.push(entry);
+      continue;
+    }
+
+    await addItem(Number(amt), unit, item);
+    added++;
+  }
 
   return {added, skipped};
 }
@@ -22,7 +41,7 @@ export async function parseAndAddItems(raw: string, addItem: (name:string) => Pr
 type Props = {
   visible: boolean;
   onClose: () => void;
-  onAdd: (ingredient: string) => void;
+  onAdd: (raw: string) => Promise<ParseResult>;
 };
 
 export function AddIngredientModal({ visible, onClose, onAdd }: Props) {
