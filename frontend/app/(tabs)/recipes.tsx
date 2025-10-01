@@ -2,7 +2,6 @@ import { Image } from 'expo-image';
 import { Platform, StyleSheet } from 'react-native';
 
 import RecipeList from '@/components/recipeList';
-import recipe from '@/components/recipe';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
@@ -22,7 +21,7 @@ export default function TabTwoScreen() {
         />
       }>
       <ThemedView style={styles.titleContainer}>
-        <RecipeList recipes={[recipe({}), recipe({})]}></RecipeList>
+        <RecipeList recipes={null}></RecipeList>
       </ThemedView>
     </ParallaxScrollView>
   );
