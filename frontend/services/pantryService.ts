@@ -19,6 +19,20 @@ export const pantryService = {
   },
   async addItem(amt: number, unit: string, name: string): Promise<Item> {
     await new Promise((r) => setTimeout(r, 150));
+
+    const keyName = name.trim().toLowerCase().replace(/\s+/g, ' ');
+    const keyUnit = unit.trim().toLowerCase().replace(/\s+/g, ' ');
+
+    const existing = pantry.pantryItems.find(
+      i => i.itemName.trim().toLowerCase().replace(/\s+/g, ' ') === keyName 
+      && i.amount.unit.trim().toLowerCase().replace(/\s+/g, ' ') === keyUnit
+    );
+
+    if (existing) {
+      existing.amount.amount += amt;
+      return { ...existing, amount: { ...existing.amount } };
+    }
+
     const newItem: Item = {
       itemID: nextId++,
       itemName: name,
