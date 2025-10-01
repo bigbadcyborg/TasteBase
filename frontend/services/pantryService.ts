@@ -24,8 +24,8 @@ export const pantryService = {
     const keyUnit = unit.trim().toLowerCase().replace(/\s+/g, ' ');
 
     const existing = pantry.pantryItems.find(
-      i => i.itemName.trim().toLowerCase().replace(/\s+/g, ' ') === keyName 
-      && i.amount.unit.trim().toLowerCase().replace(/\s+/g, ' ') === keyUnit
+      i => i.itemName.trim().toLowerCase().replace(/\s+/g, ' ') === keyName
+        && i.amount.unit.trim().toLowerCase().replace(/\s+/g, ' ') === keyUnit
     );
 
     if (existing) {
@@ -40,6 +40,17 @@ export const pantryService = {
     };
     pantry.pantryItems.push(newItem);
     return { ...newItem, amount: { ...newItem.amount } };
+  },
+  async removeAmount(itemID: number, amt: number): Promise<Item | null> {
+    await new Promise((r) => setTimeout(r, 120));
+    const item = pantry.pantryItems.find(i => i.itemID === itemID);
+    if (!item) throw new Error('Item not found');
+    item.amount.amount -= amt;
+    if (item.amount.amount <= 0) {
+      pantry.pantryItems = pantry.pantryItems.filter(i => i.itemID !== itemID);
+      return null;
+    }
+    return { ...item, amount: { ...item.amount } };
   },
 };
 
