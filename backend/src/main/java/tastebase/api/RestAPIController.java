@@ -61,7 +61,7 @@ public class RestAPIController {
     // Pantry API
     @GetMapping("/pantry/items")
     public String getPantryItems() {
-        return App.getPantryHandler().getlistRequest();
+        return App.getPantryHandler().getlistRequest().toString();
     }
 
     @PutMapping("/pantry/add")
