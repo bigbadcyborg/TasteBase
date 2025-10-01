@@ -17,25 +17,31 @@ export async function parseAndAddItems(raw: string, addItem: (amt: number, unit:
   const entries = raw.split(",").map(s=> s.trim()).filter(Boolean);
 
   for(const entry of entries){
-    const parts = entry.split(/\s+/);
-    if(parts.length < 3){
-      skipped.push(entry);
-      continue;
+    const parts = entry.split(/\s+/).filter(Boolean);
+
+    if (parts.length < 2) { skipped.push(entry); continue; }
+
+    const amt = Number(parts[0]);
+    if (!Number.isFinite(amt)) { skipped.push(entry); continue; }
+
+    let unit: string;
+    let name: string;
+
+    if (parts.length === 2) {
+      unit = parts[1];
+      name = parts[1];
+    } else {
+      unit = parts[1];
+      name = parts.slice(2).join(' ');
     }
 
-    const[amt,unit, ...rest] = parts;
-    const item = rest.join(' ').trim();
+    if (!name) { skipped.push(entry); continue; }
 
-    if(!item){
-      skipped.push(entry);
-      continue;
-    }
-
-    await addItem(Number(amt), unit, item);
+    await addItem(amt, unit, name);
     added++;
   }
 
-  return {added, skipped};
+  return { added, skipped };
 }
 
 type Props = {
@@ -54,7 +60,7 @@ export function AddIngredientModal({ visible, onClose, onAdd }: Props) {
     <Modal visible={visible} animationType="slide" transparent>
       <View style={styles.overlay}>
         <View style={[styles.card, { backgroundColor: bg }]}>
-          
+
           <ThemedText type="title" style={styles.title}>
             Add Ingredient
           </ThemedText>
