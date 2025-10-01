@@ -10,7 +10,7 @@ public class PantryHandler {
         this.myPantry = new Pantry(1, "test Pantry");
     }
 
-    public boolean addRequest(int id, String name, int amount, String unit) {
+    public boolean addRequest(int id, String name, double amount, String unit) {
         return this.myPantry.addItem(new Item(id, name, amount, unit));
     }
     public boolean removeRequest(int id) {

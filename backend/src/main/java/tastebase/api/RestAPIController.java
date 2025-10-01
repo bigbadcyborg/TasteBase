@@ -5,6 +5,7 @@ import com.google.gson.JsonParser;
 import org.springframework.web.bind.annotation.*;
 import tastebase.App;
 import tastebase.database.SQLConnector;
+import tastebase.obj.Pantry;
 import tastebase.obj.Recipe;
 
 @RestController
@@ -57,4 +58,24 @@ public class RestAPIController {
         return "Recipe not found.";
     }
 
+    // Pantry API
+    @GetMapping("/pantry/items")
+    public String getPantryItems() {
+        return App.getPantryHandler().getlistRequest();
+    }
+
+    @PutMapping("/pantry/add")
+    public Boolean addPantryItem(@RequestParam int id,
+                                @RequestParam String name,
+                                @RequestParam double amount,
+                                @RequestParam String unit
+    ) {
+        return App.getPantryHandler().addRequest(id, name, amount, unit);
+        // update db logic next
+    }
+
+    @DeleteMapping("/pantry/remove")
+    public Boolean removePantryItem(@RequestParam int id) {
+        return App.getPantryHandler().removeRequest(id);
+    }
 }
