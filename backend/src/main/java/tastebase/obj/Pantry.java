@@ -35,7 +35,6 @@ public class Pantry {
         }
         return false; // item not found
     }
-    
 
     public int getPantryID() {
         return pantryID;
@@ -45,6 +44,9 @@ public class Pantry {
     }
     public int getItemCount() {
         return pantryItems.size();
+    }
+    public String getStringItems() {
+        return this.pantryItems.toString();
     }
 
     public void setPantryID(int newID) {
