@@ -22,7 +22,7 @@ export default function TabTwoScreen() {
         />
       }>
       <ThemedView style={styles.titleContainer}>
-        <RecipeList recipes={[recipe({}), recipe({})]}></RecipeList>
+        <RecipeList recipes={null}></RecipeList>
       </ThemedView>
     </ParallaxScrollView>
   );

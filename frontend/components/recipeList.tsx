@@ -24,9 +24,21 @@ export default function RecipeList({ recipes }: Props) {
 
   return (
     <ThemedView style={[styles.container, { borderColor: Colors[colorScheme].tint }]}>
-      {recipeList.map((recipe, index) => (
-        <Recipe key={index} {...recipe} />
-      ))}  
+      {(recipeList && recipeList.length > 0) ? 
+        recipeList.map((recipe, index) => (
+          <Recipe key={index} {...recipe} />
+        ))
+      : 
+      ( // Show message if recipe array is null or empty
+        <ThemedView style={styles.emptyContainer}>
+          <ThemedText type="subtitle" style={styles.emptyMessage}>
+            No recipes found.
+          </ThemedText>
+          <ThemedText type="subtitle" style={styles.emptyMessage}>
+            Try adjusting your search or filters.
+          </ThemedText>
+        </ThemedView>
+      )}
     </ThemedView>
   );
 }
@@ -38,6 +50,15 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 5,
     minHeight: 50,
-    minWidth: 200,
+    minWidth: 500,
   },
+  emptyContainer: {
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    margin: 20,
+  },
+  emptyMessage: {
+    textAlign: 'center', 
+    margin: 10,
+  }
 });
