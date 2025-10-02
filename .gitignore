@@ -60,5 +60,5 @@ backend/src/main/.env
 /backend/build/
 /backend/.gradle/
 
-# Java
-.jdk*
+# Java Version
+/backend/.jdk/
