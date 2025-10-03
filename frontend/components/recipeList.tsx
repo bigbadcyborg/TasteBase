@@ -4,7 +4,6 @@ import Recipe from "./recipe";
 import { Colors } from "../constants/theme";
 import { StyleSheet, useColorScheme } from "react-native";
 import { useRecipes } from "@/context/RecipeContext";
-import { Recipe as RecipeType } from "../types/pantry";
 
 export default function RecipeList() {
   const { recipes, loading, error } = useRecipes(); // Get recipes from RecipeContext
@@ -53,12 +52,14 @@ export default function RecipeList() {
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 20,
+    marginHorizontal: 0,
     marginVertical: 10,
     borderRadius: 8,
     borderWidth: 5,
     minHeight: 50,
-    minWidth: 500,
+    minWidth: 100,
+    maxWidth: '100%',
+    alignSelf: 'flex-start',
   },
   emptyContainer: {
     justifyContent: 'center', 
