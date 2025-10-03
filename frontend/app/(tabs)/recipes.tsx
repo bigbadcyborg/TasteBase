@@ -19,7 +19,7 @@ export default function TabTwoScreen() {
         />
       }>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Recipes</ThemedText>
+        <ThemedText type="title">My Favorite Recipes</ThemedText>
         <ThemedText type="default" style={styles.subtitle}>Hmm... What to cook..?</ThemedText>
         <RecipeList/>
       </ThemedView>

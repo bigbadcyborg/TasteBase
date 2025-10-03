@@ -2,17 +2,20 @@ import { ThemedView } from "./themed-view";
 import { ThemedText } from "./themed-text";
 import { Colors } from "../constants/theme";
 import { Recipe as RecipeType } from "../types/pantry";
-import { StyleSheet, useColorScheme } from "react-native";
+import { Pressable, StyleSheet, useColorScheme } from "react-native";
 
 type RecipeProps = {
   recipe: RecipeType;
+  onPress: () => void;
 };
 
-export default function Recipe({ recipe }: RecipeProps) {
+export default function Recipe({ recipe, onPress }: RecipeProps) {
   const colorScheme = useColorScheme() || 'light';
 
   return (
-    <ThemedView style={[styles.container, { borderColor: Colors[colorScheme].tint }]}>
+    <Pressable 
+      style={[styles.container, { borderColor: Colors[colorScheme].tint }]} 
+      onPress={() => {onPress()}}>
       <ThemedText type="subtitle" style={[styles.title, { borderColor: Colors[colorScheme].tint }]}>
         {recipe.title}
       </ThemedText>
@@ -25,7 +28,7 @@ export default function Recipe({ recipe }: RecipeProps) {
           Ready in: {recipe.readyInMinutes} minutes
         </ThemedText>
       </ThemedView>
-    </ThemedView>
+    </Pressable>
   );
 }
 
@@ -33,6 +36,7 @@ const styles = StyleSheet.create({
   container: {
     marginHorizontal: 20,
     marginVertical: 10,
+    padding: 5,
     borderRadius: 8,
     borderWidth: 1,
     minWidth: 300,
@@ -40,7 +44,6 @@ const styles = StyleSheet.create({
   },
   title: {
     paddingHorizontal: 5,
-    marginHorizontal: 5,
     marginVertical: 5,
     borderRadius: 8,
     borderBottomWidth: 5,
@@ -57,7 +60,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   rowText: {
-    marginHorizontal: 5,
     fontWeight: 'bold',
   },
 });
