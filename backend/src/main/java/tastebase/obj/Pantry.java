@@ -1,5 +1,8 @@
 package tastebase.obj;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -35,7 +38,6 @@ public class Pantry {
         }
         return false; // item not found
     }
-    
 
     public int getPantryID() {
         return pantryID;
@@ -45,6 +47,10 @@ public class Pantry {
     }
     public int getItemCount() {
         return pantryItems.size();
+    }
+    public JsonArray getJsonItems() {
+        Gson gson = new Gson();
+        return gson.toJsonTree(this.pantryItems).getAsJsonArray();
     }
 
     public void setPantryID(int newID) {
