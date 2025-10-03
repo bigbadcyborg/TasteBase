@@ -2,34 +2,42 @@ import { ThemedView } from "./themed-view";
 import { ThemedText } from "./themed-text";
 import Recipe from "./recipe";
 import { Colors } from "../constants/theme";
-import { useState, useEffect } from "react";
 import { StyleSheet, useColorScheme } from "react-native";
+import { useRecipes } from "@/context/RecipeContext";
+import { Recipe as RecipeType } from "../types/pantry";
 
-type Props = {
-  recipes?: object[] | null;
-};
-
-export default function RecipeList({ recipes }: Props) {
-  const [recipeList, setRecipeList] = useState<object[]>([]);
+export default function RecipeList() {
+  const { recipes, loading, error } = useRecipes(); // Get recipes from RecipeContext
   const colorScheme = useColorScheme() || 'light';
 
-  useEffect(() => {
-    // Normalize recipes to an array (handle null/undefined)
-    if (!Array.isArray(recipes)) {
-      setRecipeList([]);
-      return;
-    }
-    setRecipeList(recipes);
-  }, [recipes]);
+  if (loading) {
+    return (
+      <ThemedView style={[styles.container, { borderColor: Colors[colorScheme].tint }]}>
+        <ThemedText type="subtitle">
+          Loading recipes...
+        </ThemedText>
+      </ThemedView>
+    );
+  }
+
+  if (error) {
+    return (
+      <ThemedView style={[styles.container, { borderColor: Colors[colorScheme].tint }]}>
+        <ThemedText type="subtitle">
+          Error loading recipes: {error}
+        </ThemedText>
+      </ThemedView>
+    );
+  }
 
   return (
     <ThemedView style={[styles.container, { borderColor: Colors[colorScheme].tint }]}>
-      {(recipeList && recipeList.length > 0) ? 
-        recipeList.map((recipe, index) => (
-          <Recipe key={index} {...recipe} />
+      {(recipes.length > 0) ? 
+        recipes.map((recipe, index) => (
+          <Recipe key={index} recipe={recipe} />
         ))
       : 
-      ( // Show message if recipe array is null or empty
+      ( // Show message if recipe array is empty
         <ThemedView style={styles.emptyContainer}>
           <ThemedText type="subtitle" style={styles.emptyMessage}>
             No recipes found.

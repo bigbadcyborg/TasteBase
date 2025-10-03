@@ -3,7 +3,7 @@ import { Recipe } from '../types/pantry';
 import recipeService from '../services/recipeService';
 
 type ContextShape = {
-  recipes: object[];
+  recipes: Recipe[];
   loading: boolean;
   error?: string;
   refresh: () => Promise<void>;
