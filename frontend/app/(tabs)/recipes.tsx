@@ -1,13 +1,10 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import RecipeList from '@/components/recipeList';
-import recipe from '@/components/recipe';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Fonts } from '@/constants/theme';
 
 export default function TabTwoScreen() {
   return (
@@ -22,6 +19,8 @@ export default function TabTwoScreen() {
         />
       }>
       <ThemedView style={styles.titleContainer}>
+        <ThemedText type="title">Recipes</ThemedText>
+        <ThemedText type="default" style={styles.subtitle}>Hmm... What to cook..?</ThemedText>
         <RecipeList/>
       </ThemedView>
     </ParallaxScrollView>
@@ -36,7 +35,10 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   titleContainer: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     gap: 8,
+  },
+  subtitle: {
+    fontStyle: 'italic',
   },
 });
