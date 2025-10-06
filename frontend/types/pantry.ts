@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 export type Quantity = { amount: number; unit: string };
 
 export type Item = {
@@ -27,3 +28,18 @@ export type Recipe = {
     pairingText?: string;
   } | null;
 };
+=======
+export type Quantity = { amount: number; unit: string };
+
+export type Item = {
+  itemID: number;
+  itemName: string;
+  amount: Quantity;
+};
+
+export type Pantry = {
+  pantryID: number;
+  pantryName: string;
+  pantryItems: Item[];
+};
+>>>>>>> a65ad9de68576943143e605aa55fc51909b5440d

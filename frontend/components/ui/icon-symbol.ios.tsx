@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { SymbolView, SymbolViewProps, SymbolWeight } from 'expo-symbols';
 import { StyleProp, ViewStyle } from 'react-native';
 
@@ -30,3 +31,37 @@ export function IconSymbol({
     />
   );
 }
+=======
+import { SymbolView, SymbolViewProps, SymbolWeight } from 'expo-symbols';
+import { StyleProp, ViewStyle } from 'react-native';
+
+export function IconSymbol({
+  name,
+  size = 24,
+  color,
+  style,
+  weight = 'regular',
+}: {
+  name: SymbolViewProps['name'];
+  size?: number;
+  color: string;
+  style?: StyleProp<ViewStyle>;
+  weight?: SymbolWeight;
+}) {
+  return (
+    <SymbolView
+      weight={weight}
+      tintColor={color}
+      resizeMode="scaleAspectFit"
+      name={name}
+      style={[
+        {
+          width: size,
+          height: size,
+        },
+        style,
+      ]}
+    />
+  );
+}
+>>>>>>> a65ad9de68576943143e605aa55fc51909b5440d
